@@ -21,26 +21,7 @@ Route::get('/menu', function () {
     return view('menu');
 })->name('menu');
 
-// Blog Routes
-Route::prefix('blog')->group(function () {
-    Route::get('/', function () {
-        return view('blog.index');
-    })->name('blog.index');
 
-    Route::get('/{slug}', function ($slug) {
-        return view('blog.show', compact('slug'));
-    })->name('blog.show');
-});
-
-// Team Page
-Route::get('/team', function () {
-    return view('team');
-})->name('team');
-
-// Testimonials Page
-Route::get('/testimonials', function () {
-    return view('testimonials');
-})->name('testimonials');
 
 // Gallery Routes
 Route::prefix('gallery')->group(function () {
@@ -68,21 +49,7 @@ Route::post('/contact', function () {
     return back()->with('success', 'Your message has been sent!');
 })->name('contact.submit');
 
-// Reserve Table
-Route::get('/reserve', function () {
-    return view('reserve');
-})->name('reserve');
 
-Route::post('/reserve', function () {
-    // Handle reservation submission
-    return back()->with('success', 'Your reservation has been received!');
-})->name('reserve.submit');
-
-// Newsletter Subscription
-Route::post('/newsletter/subscribe', function () {
-    // Handle newsletter subscription
-    return back()->with('success', 'Thank you for subscribing!');
-})->name('newsletter.subscribe');
 
 Auth::routes();
 
