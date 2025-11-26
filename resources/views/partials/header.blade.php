@@ -28,10 +28,10 @@
                 <div class="col-md-3">
                     <!-- Topbar Social Links & Language Switcher Start -->
                     <div class="topbar-social-links">
-                        {{-- <ul>
+                        <ul>
                             <li><a href="{{ config('restaurant.social.instagram', '#') }}"><i class="fa-brands fa-instagram"></i></a></li>
                             <li><a href="{{ config('restaurant.social.facebook', '#') }}"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="{{ config('restaurant.social.dribbble', '#') }}"><i class="fa-brands fa-dribbble"></i></a></li> --}}
+                            <li><a href="{{ config('restaurant.social.dribbble', '#') }}"><i class="fa-brands fa-dribbble"></i></a></li>
                             <li class="language-switcher">
                                 <a href="{{ route('locale.switch', 'en') }}" class="{{ app()->getLocale() == 'en' ? 'active' : '' }}">EN</a>
                                 <span>|</span>
