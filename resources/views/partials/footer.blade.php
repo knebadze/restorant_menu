@@ -78,7 +78,7 @@
                     <h3>{{ __('common.subscribe_newsletter') }}</h3>
                     <p>{{ __('common.newsletter_text') }}</p>
                     <!-- Footer NewsLetter Form Start -->
-                    <div class="footer-newsletter-form">
+                    {{-- <div class="footer-newsletter-form">
                         <form id="newslettersForm" action="{{ route('newsletter.subscribe') }}" method="POST">
                             @csrf
                             <div class="form-group">
@@ -88,7 +88,7 @@
                                 </button>
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
                     <!-- Footer NewsLetter Form End -->
                 </div>
                 <!-- Footer Links end -->

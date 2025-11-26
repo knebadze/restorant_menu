@@ -90,16 +90,9 @@
                                 <a class="nav-link" href="{{ route('contact') }}">{{ __('common.contact') }}</a>
                             </li>
 
-                            {{-- <li class="nav-item highlighted-menu">
-                                <a class="nav-link" href="{{ route('reserve') }}">{{ __('common.reserve_table') }}</a>
-                            </li> --}}
                         </ul>
                     </div>
 
-                    <!-- Header Btn Start -->
-                    <div class="header-btn">
-                        <a href="{{ route('reserve') }}" class="btn-default">{{ __('common.reserve_table') }}</a>
-                    </div>
                     <!-- Header Btn End -->
                 </div>
                 <!-- Main Menu End -->

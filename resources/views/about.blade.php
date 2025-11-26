@@ -424,7 +424,7 @@
                         <!-- Cta Button Start -->
                         <div class="cta-btn wow fadeInUp" data-wow-delay="0.4s">
                             <a href="{{ route('contact') }}" class="btn-default btn-highlighted">{{ __('about.cta.button_contact') }}</a>
-                            <a href="{{ route('reserve') }}" class="btn-default btn-dark">{{ __('about.cta.button_reserve') }}</a>
+                        
                         </div>
                         <!-- Cta Button End -->
                     </div>
