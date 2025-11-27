@@ -60,7 +60,7 @@ class CategoryController extends Controller
             $category = Category::create($validated);
 
             if ($category) {
-                return redirect()->route('categories.index')
+                return redirect()->route('admin.categories.index')
                                 ->with('success', 'Category added successfully!');
             } else {
                 return back()->withInput()
@@ -104,7 +104,7 @@ class CategoryController extends Controller
             $updated = $category->update($validated);
 
             if ($updated) {
-                return redirect()->route('categories.index')
+                return redirect()->route('admin.categories.index')
                                 ->with('success', 'Category updated successfully!');
             } else {
                 return back()->withInput()
@@ -131,7 +131,7 @@ class CategoryController extends Controller
             $deleted = $category->delete();
 
             if ($deleted) {
-                return redirect()->route('categories.index')
+                return redirect()->route('admin.categories.index')
                                 ->with('success', 'Category deleted successfully!');
             } else {
                 return back()->with('error', 'Failed to delete category!');

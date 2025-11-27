@@ -37,7 +37,7 @@ class MenuController extends Controller
     public function create()
     {
         $categories = Category::active()->ordered()->get();
-        return view('admin.menu.create', compact('categories'));
+        return view('menu.create', compact('categories'));
     }
 
     /**
@@ -78,7 +78,7 @@ class MenuController extends Controller
             $menu = Menu::create($validated);
 
             if ($menu) {
-                return redirect()->route('menu.index')
+                return redirect()->route('admin.menu.index')
                                 ->with('success', 'Menu item added successfully!');
             } else {
                 return back()->withInput()
@@ -143,7 +143,7 @@ class MenuController extends Controller
             $updated = $menu->update($validated);
 
             if ($updated) {
-                return redirect()->route('menu.index')
+                return redirect()->route('admin.menu.index')
                                 ->with('success', 'Menu item updated successfully!');
             } else {
                 return back()->withInput()
@@ -171,7 +171,7 @@ class MenuController extends Controller
             $deleted = $menu->delete();
 
             if ($deleted) {
-                return redirect()->route('menu.index')
+                return redirect()->route('admin.menu.index')
                                 ->with('success', 'Menu item deleted successfully!');
             } else {
                 return back()->with('error', 'Failed to delete menu item!');

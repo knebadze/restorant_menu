@@ -107,7 +107,7 @@
                                 </button>
                             </div>
 
-                            <form id="delete-form-{{ $menu->id }}" action="{{ route('menu.destroy', $menu) }}"
+                            <form id="delete-form-{{ $menu->id }}" action="{{ route('admin.menu.destroy', $menu) }}"
                                 method="POST" class="d-none">
                                 @csrf
                                 @method('DELETE')

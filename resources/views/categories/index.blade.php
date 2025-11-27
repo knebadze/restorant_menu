@@ -76,7 +76,7 @@
                             </div>
 
                             <form id="delete-form-{{ $category->id }}"
-                                action="{{ route('categories.destroy', $category) }}" method="POST" class="d-none">
+                                action="{{ route('admin.categories.destroy', $category) }}" method="POST" class="d-none">
                                 @csrf
                                 @method('DELETE')
                             </form>
