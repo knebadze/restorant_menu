@@ -28,7 +28,7 @@
 
     <div class="row">
         <div class="col-lg-10 mx-auto">
-            <form action="{{ route('menu.update', $menu) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.menu.update', $menu) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -215,7 +215,7 @@
                 </div>
 
                 <div class="d-flex gap-2 justify-content-end">
-                    <a href="{{ route('menu.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('admin.menu.index') }}" class="btn btn-secondary">
                         <i class="bi bi-x-lg me-1"></i> Cancel
                     </a>
                     <button type="submit" class="btn btn-primary">
