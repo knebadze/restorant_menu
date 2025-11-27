@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name_uk'); // Ukrainian name
             $table->decimal('price', 8, 2);
             $table->string('currency', 3)->default('USD');
-            $table->text('description'); // English description
-            $table->text('description_uk'); // Ukrainian description
+            $table->text('description')->nullable(); // English description
+            $table->text('description_uk')->nullable(); // Ukrainian description
             $table->string('image')->nullable(); // Image path
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_vegetarian')->default(false);
