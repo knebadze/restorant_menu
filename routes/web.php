@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PublicMenuController;
 
 // Locale Switcher
 Route::get('/locale/{locale}', [LocaleController::class, 'switch'])->name('locale.switch');
@@ -19,12 +20,11 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-// Menu Page (Public) - ეს უნდა იყოს BEFORE auth routes
-Route::get('/menu', function () {
-    $categories = \App\Models\Category::active()->ordered()->with('items')->get();
-    $featuredItems = \App\Models\Menu::active()->featured()->ordered()->limit(6)->get();
-    return view('menu', compact('categories', 'featuredItems'));
-})->name('menu');
+// Menu Page (Public)
+Route::get('/menu', [PublicMenuController::class, 'index'])->name('menu');
+Route::get('/menu/category/{slug}', [PublicMenuController::class, 'category'])->name('menu.category');
+Route::get('/menu/search', [PublicMenuController::class, 'search'])->name('menu.search');
+
 
 // Gallery Routes
 Route::prefix('gallery')->group(function () {

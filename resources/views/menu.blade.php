@@ -14,8 +14,8 @@
                         <h1 class="text-anime-style-3" data-cursor="-opaque">{{ __('menu.page_title') }}</h1>
                         <nav class="wow fadeInUp">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a
-                                        href="{{ route('welcome') }}">{{ __('menu.breadcrumb_home') }}</a></li>
+                                <li class="breadcrumb-item">
+                                    href="{{ route('welcome') }}">{{ __('menu.breadcrumb_home') }}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{ __('menu.breadcrumb_menu') }}</li>
                             </ol>
                         </nav>
@@ -38,66 +38,55 @@
                             <!-- Sidebar Our Menu Nav start -->
                             <div class="our-menu-tab-nav">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="first-tab" data-bs-toggle="tab"
-                                            data-bs-target="#first" type="button" role="tab" aria-selected="true">
-                                            <img src="{{ asset('images/icon-menu-tab-primary-1.svg') }}" alt="">
-                                            {{ __('menu.categories.starters') }}
-                                        </button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="second-tab" data-bs-toggle="tab"
-                                            data-bs-target="#second" type="button" role="tab" aria-selected="false">
-                                            <img src="{{ asset('images/icon-menu-tab-primary-2.svg') }}" alt="">
-                                            {{ __('menu.categories.main_courses') }}
-                                        </button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="third-tab" data-bs-toggle="tab" data-bs-target="#third"
-                                            type="button" role="tab" aria-selected="false">
-                                            <img src="{{ asset('images/icon-menu-tab-primary-3.svg') }}" alt="">
-                                            {{ __('menu.categories.desserts') }}
-                                        </button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="fourth-tab" data-bs-toggle="tab"
-                                            data-bs-target="#fourth" type="button" role="tab" aria-selected="false">
-                                            <img src="{{ asset('images/icon-menu-tab-primary-4.svg') }}" alt="">
-                                            {{ __('menu.categories.beverages') }}
-                                        </button>
-                                    </li>
+                                    @php
+                                        $menuImages = [
+                                            'our-menu-image-1.png',
+                                            'our-menu-image-2.png',
+                                            'our-menu-image-3.png',
+                                            'our-menu-image-4.png',
+                                            'our-menu-image-5.png',
+                                            'our-menu-image-6.png',
+                                        ];
+                                    @endphp
+                                    @foreach ($categories as $index => $category)
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link {{ $index == 0 ? 'active' : '' }}"
+                                                id="tab-{{ $category->id }}" data-bs-toggle="tab"
+                                                data-bs-target="#category-{{ $category->id }}" type="button" role="tab"
+                                                aria-selected="{{ $index == 0 ? 'true' : 'false' }}">
+                                                <img src="{{ asset('images/icon-menu-tab-primary-' . (($index % 4) + 1) . '.svg') }}"
+                                                    alt="">
+                                                {{ $category->localized_name }}
+                                            </button>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <!-- Sidebar Our Menu Nav End -->
 
                             <!-- Menu Box Start -->
                             <div class="tab-content" id="myTabContent">
-                                <!-- Starters Tab Start -->
-                                <div class="tab-pane fade show active" id="first" role="tabpanel">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-12">
-                                            <!-- Our Menu List Start -->
-                                            <div class="our-menu-list">
-                                                @php
-                                                    $starters = __('menu.starters');
-                                                    $menuImages = [
-                                                        'our-menu-image-1.png',
-                                                        'our-menu-image-2.png',
-                                                        'our-menu-image-3.png',
-                                                        'our-menu-image-4.png',
-                                                        'our-menu-image-5.png',
-                                                        'our-menu-image-6.png',
-                                                    ];
-                                                @endphp
-                                                @if (is_array($starters))
-                                                    @foreach ($starters as $index => $item)
+                                @foreach ($categories as $index => $category)
+                                    <!-- Category Tab Start -->
+                                    <div class="tab-pane fade {{ $index == 0 ? 'show active' : '' }}"
+                                        id="category-{{ $category->id }}" role="tabpanel">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-12">
+                                                <!-- Our Menu List Start -->
+                                                <div class="our-menu-list">
+                                                    @forelse($category->items as $item)
                                                         <!-- Our Menu Item Start -->
                                                         <div class="our-menu-item">
                                                             <!-- Our Menu Image Start -->
                                                             <div class="our-menu-image">
                                                                 <figure>
-                                                                    <img src="{{ asset('images/' . $menuImages[$loop->index % 6]) }}"
-                                                                        alt="{{ $item['name'] }}">
+                                                                    @if ($item->image)
+                                                                        <img src="{{ asset('storage/' . $item->image) }}"
+                                                                            alt="{{ $item->localized_name }}">
+                                                                    @else
+                                                                        <img src="{{ asset('images/' . $menuImages[$loop->index % 6]) }}"
+                                                                            alt="{{ $item->localized_name }}">
+                                                                    @endif
                                                                 </figure>
                                                             </div>
                                                             <!-- Our Menu Image End -->
@@ -106,178 +95,39 @@
                                                             <div class="menu-item-body">
                                                                 <!-- Menu Item Title Start -->
                                                                 <div class="menu-item-title">
-                                                                    <h3>{{ $item['name'] }}</h3>
-                                                                    <span>{{ $item['price'] }}</span>
+                                                                    <h3>{{ $item->localized_name }}</h3>
+                                                                    @if ($loop->first)
+                                                                        <span>{{ $item->formatted_price }}</span>
+                                                                    @else
+                                                                        <hr>
+                                                                        <span>{{ $item->formatted_price }}</span>
+                                                                    @endif
                                                                 </div>
                                                                 <!-- Menu Item Title End -->
 
                                                                 <!-- Menu Item Content Start -->
                                                                 <div class="menu-item-content">
-                                                                    <p>{{ $item['description'] }}</p>
+                                                                    <p>{{ $item->localized_description }}</p>
                                                                 </div>
                                                                 <!-- Menu Item Content End -->
                                                             </div>
                                                             <!-- Menu Item Body End -->
                                                         </div>
                                                         <!-- Our Menu Item End -->
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                            <!-- Our Menu List End -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Starters Tab End -->
-
-                                <!-- Main Courses Tab Start -->
-                                <div class="tab-pane fade" id="second" role="tabpanel">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-12">
-                                            <!-- Our Menu List Start -->
-                                            <div class="our-menu-list">
-                                                @php
-                                                    $mainCourses = __('menu.main_courses');
-                                                @endphp
-                                                @if (is_array($mainCourses))
-                                                    @foreach ($mainCourses as $index => $item)
-                                                        <!-- Our Menu Item Start -->
-                                                        <div class="our-menu-item">
-                                                            <!-- Our Menu Image Start -->
-                                                            <div class="our-menu-image">
-                                                                <figure>
-                                                                    <img src="{{ asset('images/' . $menuImages[$loop->index % 6]) }}"
-                                                                        alt="{{ $item['name'] }}">
-                                                                </figure>
-                                                            </div>
-                                                            <!-- Our Menu Image End -->
-
-                                                            <!-- Menu Item Body Start -->
-                                                            <div class="menu-item-body">
-                                                                <!-- Menu Item Title Start -->
-                                                                <div class="menu-item-title">
-                                                                    <h3>{{ $item['name'] }}</h3>
-                                                                    <hr>
-                                                                    <span>{{ $item['price'] }}</span>
-                                                                </div>
-                                                                <!-- Menu Item Title End -->
-
-                                                                <!-- Menu Item Content Start -->
-                                                                <div class="menu-item-content">
-                                                                    <p>{{ $item['description'] }}</p>
-                                                                </div>
-                                                                <!-- Menu Item Content End -->
-                                                            </div>
-                                                            <!-- Menu Item Body End -->
+                                                    @empty
+                                                        <!-- Empty State Start -->
+                                                        <div class="text-center py-5">
+                                                            <p class="text-muted">{{ __('menu.no_items') }}</p>
                                                         </div>
-                                                        <!-- Our Menu Item End -->
-                                                    @endforeach
-                                                @endif
+                                                        <!-- Empty State End -->
+                                                    @endforelse
+                                                </div>
+                                                <!-- Our Menu List End -->
                                             </div>
-                                            <!-- Our Menu List End -->
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Main Courses Tab End -->
-
-                                <!-- Desserts Tab Start -->
-                                <div class="tab-pane fade" id="third" role="tabpanel">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-12">
-                                            <!-- Our Menu List Start -->
-                                            <div class="our-menu-list">
-                                                @php
-                                                    $desserts = __('menu.desserts');
-                                                @endphp
-                                                @if (is_array($desserts))
-                                                    @foreach ($desserts as $index => $item)
-                                                        <!-- Our Menu Item Start -->
-                                                        <div class="our-menu-item">
-                                                            <!-- Our Menu Image Start -->
-                                                            <div class="our-menu-image">
-                                                                <figure>
-                                                                    <img src="{{ asset('images/' . $menuImages[$loop->index % 6]) }}"
-                                                                        alt="{{ $item['name'] }}">
-                                                                </figure>
-                                                            </div>
-                                                            <!-- Our Menu Image End -->
-
-                                                            <!-- Menu Item Body Start -->
-                                                            <div class="menu-item-body">
-                                                                <!-- Menu Item Title Start -->
-                                                                <div class="menu-item-title">
-                                                                    <h3>{{ $item['name'] }}</h3>
-                                                                    <hr>
-                                                                    <span>{{ $item['price'] }}</span>
-                                                                </div>
-                                                                <!-- Menu Item Title End -->
-
-                                                                <!-- Menu Item Content Start -->
-                                                                <div class="menu-item-content">
-                                                                    <p>{{ $item['description'] }}</p>
-                                                                </div>
-                                                                <!-- Menu Item Content End -->
-                                                            </div>
-                                                            <!-- Menu Item Body End -->
-                                                        </div>
-                                                        <!-- Our Menu Item End -->
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                            <!-- Our Menu List End -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Desserts Tab End -->
-
-                                <!-- Beverages Tab Start -->
-                                <div class="tab-pane fade" id="fourth" role="tabpanel">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-12">
-                                            <!-- Our Menu List Start -->
-                                            <div class="our-menu-list">
-                                                @php
-                                                    $beverages = __('menu.beverages');
-                                                @endphp
-                                                @if (is_array($beverages))
-                                                    @foreach ($beverages as $index => $item)
-                                                        <!-- Our Menu Item Start -->
-                                                        <div class="our-menu-item">
-                                                            <!-- Our Menu Image Start -->
-                                                            <div class="our-menu-image">
-                                                                <figure>
-                                                                    <img src="{{ asset('images/' . $menuImages[$loop->index % 6]) }}"
-                                                                        alt="{{ $item['name'] }}">
-                                                                </figure>
-                                                            </div>
-                                                            <!-- Our Menu Image End -->
-
-                                                            <!-- Menu Item Body Start -->
-                                                            <div class="menu-item-body">
-                                                                <!-- Menu Item Title Start -->
-                                                                <div class="menu-item-title">
-                                                                    <h3>{{ $item['name'] }}</h3>
-                                                                    <hr>
-                                                                    <span>{{ $item['price'] }}</span>
-                                                                </div>
-                                                                <!-- Menu Item Title End -->
-
-                                                                <!-- Menu Item Content Start -->
-                                                                <div class="menu-item-content">
-                                                                    <p>{{ $item['description'] }}</p>
-                                                                </div>
-                                                                <!-- Menu Item Content End -->
-                                                            </div>
-                                                            <!-- Menu Item Body End -->
-                                                        </div>
-                                                        <!-- Our Menu Item End -->
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                            <!-- Our Menu List End -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Beverages Tab End -->
+                                    <!-- Category Tab End -->
+                                @endforeach
                             </div>
                             <!-- Menu Box End -->
                         </div>
@@ -287,8 +137,8 @@
                     <div class="col-lg-12">
                         <!-- Section Footer Text Start -->
                         <div class="section-footer-text wow fadeInUp" data-wow-delay="0.4s">
-                            <p><span>Free</span>{{ __('menu.footer_text') }} <a
-                                    href="{{ route('menu') }}">{{ __('menu.footer_link') }}</a></p>
+                            <p><span>Free</span>{{ __('menu.footer_text') }}
+                                href="{{ route('menu') }}">{{ __('menu.footer_link') }}</a></p>
                         </div>
                         <!-- Section Footer Text End -->
                     </div>
@@ -331,8 +181,7 @@
                                         <div class="swiper-slide">
                                             <div class="testimonial-item">
                                                 <div class="testimonial-quote">
-                                                    <img src="{{ asset('images/testimonial-quote.svg') }}"
-                                                        alt="">
+                                                    <img src="{{ asset('images/testimonial-quote.svg') }}" alt="">
                                                 </div>
                                                 <div class="testimonial-content">
                                                     <p>{{ __('menu.testimonials.quote') }}</p>
