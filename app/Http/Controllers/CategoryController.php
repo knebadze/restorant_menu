@@ -24,7 +24,7 @@ class CategoryController extends Controller
                                   ->orderBy('display_order')
                                   ->paginate(15);
 
-            return view('categories.index', compact('categories'));
+            return view('admin.categories.index', compact('categories'));
         } catch (Exception $e) {
             return back()->with('error', 'Error loading categories: ' . $e->getMessage());
         }
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit', compact('category'));
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -104,7 +104,7 @@ class CategoryController extends Controller
             $updated = $category->update($validated);
 
             if ($updated) {
-                return redirect()->route('categories.index')
+                return redirect()->route('admin.categories.index')
                                 ->with('success', 'Category updated successfully!');
             } else {
                 return back()->withInput()
@@ -131,7 +131,7 @@ class CategoryController extends Controller
             $deleted = $category->delete();
 
             if ($deleted) {
-                return redirect()->route('categories.index')
+                return redirect()->route('admin.categories.index')
                                 ->with('success', 'Category deleted successfully!');
             } else {
                 return back()->with('error', 'Failed to delete category!');

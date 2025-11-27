@@ -28,7 +28,7 @@
 
     <div class="row">
         <div class="col-lg-10 mx-auto">
-            <form action="{{ route('menu.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.menu.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">

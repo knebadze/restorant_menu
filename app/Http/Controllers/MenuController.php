@@ -25,7 +25,7 @@ class MenuController extends Controller
                          ->orderBy('display_order')
                          ->paginate(15);
 
-            return view('menu.index', compact('menus'));
+            return view('admin.menu.index', compact('menus'));
         } catch (Exception $e) {
             return back()->with('error', 'Error loading menu items: ' . $e->getMessage());
         }
@@ -37,7 +37,7 @@ class MenuController extends Controller
     public function create()
     {
         $categories = Category::active()->ordered()->get();
-        return view('menu.create', compact('categories'));
+        return view('admin.menu.create', compact('categories'));
     }
 
     /**
@@ -78,7 +78,7 @@ class MenuController extends Controller
             $menu = Menu::create($validated);
 
             if ($menu) {
-                return redirect()->route('menu.index')
+                return redirect()->route('admin.menu.index')
                                 ->with('success', 'Menu item added successfully!');
             } else {
                 return back()->withInput()
@@ -98,7 +98,7 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         $categories = Category::active()->ordered()->get();
-        return view('menu.edit', compact('menu', 'categories'));
+        return view('admin.menu.edit', compact('menu', 'categories'));
     }
 
     /**
@@ -143,7 +143,7 @@ class MenuController extends Controller
             $updated = $menu->update($validated);
 
             if ($updated) {
-                return redirect()->route('menu.index')
+                return redirect()->route('admin.menu.index')
                                 ->with('success', 'Menu item updated successfully!');
             } else {
                 return back()->withInput()
@@ -171,7 +171,7 @@ class MenuController extends Controller
             $deleted = $menu->delete();
 
             if ($deleted) {
-                return redirect()->route('menu.index')
+                return redirect()->route('admini.menu.index')
                                 ->with('success', 'Menu item deleted successfully!');
             } else {
                 return back()->with('error', 'Failed to delete menu item!');

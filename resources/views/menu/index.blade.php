@@ -97,7 +97,7 @@
                         </td>
                         <td class="text-end">
                             <div class="btn-group" role="group">
-                                <a href="{{ route('menu.edit', $menu) }}" class="btn btn-sm btn-outline-primary"
+                                <a href="{{ route('admin.menu.edit', $menu) }}" class="btn btn-sm btn-outline-primary"
                                     title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </a>
