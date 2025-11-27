@@ -15,9 +15,9 @@
                         <a href="{{ route('categories.index') }}" class="btn btn-primary">
                             <i class="bi bi-tag me-2"></i>კატეგორიები
                         </a>
-                        {{-- <a href="{{ route('menu.index') }}" class="btn btn-outline-primary">
-                        <i class="bi bi-journal-text me-2"></i>მენიუ
-                    </a> --}}
+                        <a href="{{ route('menu.index') }}" class="btn btn-outline-primary">
+                            <i class="bi bi-journal-text me-2"></i>მენიუ
+                        </a>
                     </div>
                 </div>
             </div>

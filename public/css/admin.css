@@ -488,3 +488,51 @@ body {
     font-weight: 600;
     color: #2d3748;
 }
+* Menu Items Table Image Styles */ .table img.rounded {
+    border: 2px solid #e9ecef;
+}
+
+/* Badge Styles */
+.badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 8px;
+}
+
+/* Image Preview Styles */
+.img-thumbnail {
+    padding: 4px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+/* Form File Input */
+.form-control[type="file"] {
+    padding: 8px 12px;
+}
+
+/* Responsive Table Improvements */
+@media (max-width: 768px) {
+    .table {
+        font-size: 13px;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px 6px;
+        white-space: normal;
+    }
+
+    .btn-group .btn {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .badge {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+}

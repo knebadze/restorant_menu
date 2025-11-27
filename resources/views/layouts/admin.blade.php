@@ -43,10 +43,10 @@
                 <i class="bi bi-tag"></i>
                 <span>კატეგორიები</span>
             </a>
-            {{-- <a class="nav-link {{ request()->routeIs('menu.*') ? 'active' : '' }}" href="{{ route('menu.index') }}">
+            <a class="nav-link {{ request()->routeIs('menu.*') ? 'active' : '' }}" href="{{ route('menu.index') }}">
                 <i class="bi bi-journal-text"></i>
                 <span>მენიუ</span>
-            </a> --}}
+            </a>
         </nav>
 
         <div class="sidebar-footer">

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\HomeController;
 
 // Locale Switcher
@@ -18,10 +19,10 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-// Menu Page
+// Menu Page (Public)
 Route::get('/menu', function () {
     return view('menu');
-})->name('menu');
+})->name('menu.public');
 
 // Gallery Routes
 Route::prefix('gallery')->group(function () {
@@ -57,4 +58,7 @@ Route::middleware('auth')->group(function () {
 
     // Category Routes
     Route::resource('categories', CategoryController::class);
+
+    // Menu Routes
+    Route::resource('menu', MenuController::class);
 });
