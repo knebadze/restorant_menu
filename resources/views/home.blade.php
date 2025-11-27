@@ -1,301 +1,152 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('title', __('common.home') . ' - ' . config('restaurant.name'))
-@section('meta_description', __('home.hero.title'))
+@section('title', 'მთავარი')
+@section('page-title', 'მთავარი გვერდი')
 
 @section('content')
-    <!-- Hero Section Start -->
-    <div class="hero dark-section">
-        <!-- Video Start -->
-        <div class="hero-bg-video">
-            <video autoplay muted loop id="myvideo">
-                <source src="{{ asset('videos/seabud-video.mp4') }}" type="video/mp4">
-            </video>
-        </div>
-        <!-- Video End -->
-        <div class="container">
-            <div class="row align-items-end">
-                <div class="col-lg-7">
-                    <!-- Hero Content Start -->
-                    <div class="hero-content">
-                        <!-- Section Title Start -->
-                        <div class="section-title">
-                            <h3 class="wow fadeInUp">{{ __('home.hero.subtitle') }}</h3>
-                            <h1 class="text-anime-style-3" data-cursor="-opaque">{{ __('home.hero.title') }}</h1>
-                        </div>
-                        <!-- Section Title End -->
-
-                        <!-- Hero Button Start -->
-                        <div class="hero-btn wow fadeInUp" data-wow-delay="0.2s">
-                            <a href="{{ route('contact') }}" class="btn-default btn-highlighted">{{ __('common.get_started') }}</a>
-                            <a href="{{ route('menu') }}" class="btn-default btn-dark">{{ __('common.explore_menu') }}</a>
-                        </div>
-                        <!-- Hero Button End -->
+    <div class="row g-4">
+        <!-- Restaurant Info Card -->
+        <div class="col-12">
+            <div class="restaurant-hero">
+                <div class="hero-content">
+                    <h1 class="display-5 fw-bold mb-3">{{ config('restaurant.name') }}</h1>
+                    <p class="lead text-muted mb-4">{{ config('restaurant.footer_description') }}</p>
+                    <div class="d-flex gap-3">
+                        <a href="{{ route('categories.index') }}" class="btn btn-primary">
+                            <i class="bi bi-tag me-2"></i>კატეგორიები
+                        </a>
+                        {{-- <a href="{{ route('menu.index') }}" class="btn btn-outline-primary">
+                        <i class="bi bi-journal-text me-2"></i>მენიუ
+                    </a> --}}
                     </div>
-                    <!-- Hero Content End -->
                 </div>
+            </div>
+        </div>
 
-                <div class="col-lg-5">
-                    <!-- Working Hours Item Start -->
-                    <div class="working-hours-item wow fadeInUp" data-wow-delay="0.4s">
-                        <!-- Working Hours Header Start -->
-                        <div class="working-hours-header">
-                            <h3>{{ __('common.working_hours') }}</h3>
-                            <img src="{{ asset('images/icon-clock-white.svg') }}" alt="">
-                        </div>
-                        <!-- Working Hours Header End -->
+        <!-- Contact Info -->
+        <div class="col-md-6 col-lg-3">
+            <div class="info-card">
+                <div class="info-icon bg-primary bg-opacity-10 text-primary">
+                    <i class="bi bi-telephone"></i>
+                </div>
+                <h6 class="mb-2">ტელეფონი</h6>
+                <p class="mb-0 text-muted">{{ config('restaurant.phone') }}</p>
+            </div>
+        </div>
 
-                        <!-- Working Hours Body Start -->
-                        <div class="working-hours-body">
-                            <ul>
-                                @foreach(config('restaurant.working_hours') as $schedule)
-                                    <li>{{ __('common.' . strtolower(str_replace([' ', '-'], '_', $schedule['days'])), ['default' => $schedule['days']]) }} <span>{{ $schedule['hours'] }}</span></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <!-- Working Hours Body End -->
+        <div class="col-md-6 col-lg-3">
+            <div class="info-card">
+                <div class="info-icon bg-success bg-opacity-10 text-success">
+                    <i class="bi bi-envelope"></i>
+                </div>
+                <h6 class="mb-2">ელ-ფოსტა</h6>
+                <p class="mb-0 text-muted">{{ config('restaurant.email') }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="info-card">
+                <div class="info-icon bg-warning bg-opacity-10 text-warning">
+                    <i class="bi bi-geo-alt"></i>
+                </div>
+                <h6 class="mb-2">მისამართი</h6>
+                <p class="mb-0 text-muted">{{ config('restaurant.address') }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="info-card">
+                <div class="info-icon bg-info bg-opacity-10 text-info">
+                    <i class="bi bi-clock"></i>
+                </div>
+                <h6 class="mb-2">სამუშაო საათები</h6>
+                <p class="mb-0 text-muted small">{{ config('restaurant.working_hours.weekdays.hours') }}</p>
+            </div>
+        </div>
+
+        <!-- Working Hours Card -->
+        <div class="col-lg-6">
+            <div class="schedule-card">
+                <h5 class="mb-4">
+                    <i class="bi bi-calendar-check me-2"></i>
+                    სამუშაო განრიგი
+                </h5>
+                @foreach (config('restaurant.working_hours') as $schedule)
+                    <div class="schedule-item">
+                        <span class="schedule-day">{{ $schedule['days'] }}</span>
+                        <span class="schedule-hours">{{ $schedule['hours'] }}</span>
                     </div>
-                    <!-- Working Hours Item End -->
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Social Media Card -->
+        <div class="col-lg-6">
+            <div class="schedule-card">
+                <h5 class="mb-4">
+                    <i class="bi bi-share me-2"></i>
+                    სოციალური ქსელები
+                </h5>
+                <div class="social-links">
+                    @if (config('restaurant.social.facebook') !== '#')
+                        <a href="{{ config('restaurant.social.facebook') }}" target="_blank" class="social-link facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                    @endif
+
+                    @if (config('restaurant.social.instagram') !== '#')
+                        <a href="{{ config('restaurant.social.instagram') }}" target="_blank"
+                            class="social-link instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    @endif
+
+                    @if (config('restaurant.social.twitter') !== '#')
+                        <a href="{{ config('restaurant.social.twitter') }}" target="_blank" class="social-link twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                    @endif
+
+                    @if (config('restaurant.social.pinterest') !== '#')
+                        <a href="{{ config('restaurant.social.pinterest') }}" target="_blank"
+                            class="social-link pinterest">
+                            <i class="bi bi-pinterest"></i>
+                        </a>
+                    @endif
+
+                    @if (config('restaurant.social.dribbble') !== '#')
+                        <a href="{{ config('restaurant.social.dribbble') }}" target="_blank" class="social-link dribbble">
+                            <i class="bi bi-dribbble"></i>
+                        </a>
+                    @endif
+
+                    @if (config('restaurant.social.linkedin') !== '#')
+                        <a href="{{ config('restaurant.social.linkedin') }}" target="_blank" class="social-link linkedin">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="col-12">
+            <div class="stats-row">
+                <div class="stat-item">
+                    {{-- <div class="stat-value">{{ \App\Models\Category::count() }}</div> --}}
+                    <div class="stat-label">კატეგორიები</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    {{-- <div class="stat-value">{{ \App\Models\Menu::count() }}</div> --}}
+                    <div class="stat-label">მენიუს აითემები</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    {{-- <div class="stat-value">{{ \App\Models\Menu::where('is_available', true)->count() }}</div> --}}
+                    <div class="stat-label">ხელმისაწვდომი</div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Hero Section End -->
-
-    <!-- About us Section Start -->
-    <div class="about-us bg-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <!-- About Us Images Start -->
-                    <div class="about-us-images">
-                        <!-- About Image Box 1 Start -->
-                        <div class="about-image-box-1">
-                            <!-- About Image Start -->
-                            <div class="about-image">
-                                <figure class="image-anime reveal">
-                                    <img src="{{ asset('images/about-us-image-1.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <!-- About Image End -->
-
-                            <!-- Customer Rate Box Start -->
-                            <div class="customer-rate-box">
-                                <h2><span class="counter">95</span>%</h2>
-                                <p>{{ __('home.customer_rate.title') }}</p>
-                            </div>
-                            <!-- Customer Rate Box End -->
-                        </div>
-                        <!-- About Image Box 1 End -->
-
-                        <!-- About Image Box 3 Start -->
-                        <div class="about-image-box-2">
-                            <!-- Contact Circle Start -->
-                            <div class="contact-us-circle">
-                                <a href="{{ route('contact') }}">
-                                    <img src="{{ asset('images/contact-us-circle.svg') }}" alt="">
-                                </a>
-                            </div>
-                            <!-- Contact Circle End -->
-
-                            <!-- About Image Start -->
-                            <div class="about-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('images/about-us-image-2.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <!-- About Image End -->
-                        </div>
-                        <!-- About Image Box 3 End -->
-                    </div>
-                    <!-- About Us Images End -->
-                </div>
-
-                <div class="col-lg-6">
-                    <!-- About us Content Start -->
-                    <div class="about-us-content">
-                        <!-- Section Title Start -->
-                        <div class="section-title">
-                            <h3 class="wow fadeInUp">{{ __('home.about.section_title') }}</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">{{ __('home.about.title') }}</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">{{ __('home.about.description') }}</p>
-                        </div>
-                        <!-- Section Title End -->
-
-                        <!-- About Body List Start -->
-                        <div class="about-body-list wow fadeInUp" data-wow-delay="0.4s">
-                            <ul>
-                                @foreach(__('home.about.features') as $feature)
-                                    <li>{{ $feature }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <!-- About Body List End -->
-
-                        <!-- About Counter List Start -->
-                        <div class="about-counter-list">
-                            <!-- About Counter Item Start -->
-                            <div class="about-counter-item">
-                                <h2><span class="counter">25</span>+</h2>
-                                <p>{{ __('home.about.stats.experience') }}</p>
-                            </div>
-                            <!-- About Counter Item End -->
-
-                            <!-- About Counter Item Start -->
-                            <div class="about-counter-item">
-                                <h2><span class="counter">10</span>K+</h2>
-                                <p>{{ __('home.about.stats.customers') }}</p>
-                            </div>
-                            <!-- About Counter Item End -->
-
-                            <!-- About Counter Item Start -->
-                            <div class="about-counter-item">
-                                <h2><span class="counter">98</span>%</h2>
-                                <p>{{ __('home.about.stats.satisfaction') }}</p>
-                            </div>
-                            <!-- About Counter Item End -->
-                        </div>
-                        <!-- About Counter List End -->
-
-                        <!-- About Button Start -->
-                        <div class="about-btn wow fadeInUp" data-wow-delay="0.6s">
-                            <a href="{{ route('about') }}" class="btn-default">{{ __('common.more_about') }}</a>
-                        </div>
-                        <!-- About Button End -->
-                    </div>
-                    <!-- About us Content End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About us Section End -->
-
-    <!-- Our History Section Start -->
-    <div class="our-history bg-section light-section">
-        <div class="container">
-            <div class="row section-row">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp">{{ __('home.history.section_title') }}</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">{{ __('home.history.title') }}</h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Our History Box Start -->
-                    <div class="our-history-box">
-                        @foreach(__('home.history.timeline') as $year => $description)
-                            <!-- History Item Start -->
-                            <div class="history-item wow fadeInUp" data-wow-delay="{{ $loop->index * 0.2 }}s">
-                                <div class="history-item-content">
-                                    <h2>{{ $year }}</h2>
-                                    <p>{{ $description }}</p>
-                                </div>
-                                <div class="history-item-image">
-                                    <figure>
-                                        <img src="{{ asset('images/history-image-' . ($loop->index + 1) . '.jpg') }}" alt="">
-                                    </figure>
-                                </div>
-                            </div>
-                            <!-- History Item End -->
-                        @endforeach
-                    </div>
-                    <!-- Our History Box End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Our History Section End -->
-
-    <!-- CTA Section Start -->
-    <div class="cta-box bg-section dark-section parallaxie">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="cta-box-content">
-                        <!-- Section Title Start -->
-                        <div class="section-title section-title-center">
-                            <h3 class="wow fadeInUp">{{ __('home.cta.title') }}</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">{{ __('home.cta.subtitle') }}</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.2s">{{ __('home.cta.description') }}</p>
-                        </div>
-                        <!-- Section Title End -->
-
-                        <!-- Cta Button Start -->
-                        <div class="cta-btn wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="{{ route('contact') }}" class="btn-default btn-highlighted">{{ __('common.contact_now') }}</a>
-                        
-                        </div>
-                        <!-- Cta Button End -->
-                    </div>
-                </div>
-
-                <div class="col-lg-12">
-                    <!-- Cta Counter List Start -->
-                    <div class="cta-counter-list">
-                        <!-- CTA Counter Item Start -->
-                        <div class="cta-counter-item">
-                            <div class="icon-box">
-                                <img src="{{ asset('images/icon-cta-counter-1.svg') }}" alt="">
-                            </div>
-                            <div class="cta-counter-content">
-                                <h2><span class="counter">85</span>+</h2>
-                                <p>{{ __('home.cta.stats.dishes') }}</p>
-                            </div>
-                        </div>
-                        <!-- CTA Counter Item End -->
-
-                        <!-- CTA Counter Item Start -->
-                        <div class="cta-counter-item">
-                            <div class="icon-box">
-                                <img src="{{ asset('images/icon-cta-counter-2.svg') }}" alt="">
-                            </div>
-                            <div class="cta-counter-content">
-                                <h2><span class="counter">4.9</span>+</h2>
-                                <p>{{ __('home.cta.stats.rating') }}</p>
-                            </div>
-                        </div>
-                        <!-- CTA Counter Item End -->
-
-                        <!-- CTA Counter Item Start -->
-                        <div class="cta-counter-item">
-                            <div class="icon-box">
-                                <img src="{{ asset('images/icon-cta-counter-3.svg') }}" alt="">
-                            </div>
-                            <div class="cta-counter-content">
-                                <h2><span class="counter">35</span>k+</h2>
-                                <p>{{ __('home.cta.stats.guests') }}</p>
-                            </div>
-                        </div>
-                        <!-- CTA Counter Item End -->
-
-                        <!-- CTA Counter Item Start -->
-                        <div class="cta-counter-item">
-                            <div class="icon-box">
-                                <img src="{{ asset('images/icon-cta-counter-4.svg') }}" alt="">
-                            </div>
-                            <div class="cta-counter-content">
-                                <h2><span class="counter">25</span>+</h2>
-                                <p>{{ __('home.cta.stats.suppliers') }}</p>
-                            </div>
-                        </div>
-                        <!-- CTA Counter Item End -->
-                    </div>
-                    <!-- Cta Counter List End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- CTA Section End -->
-
 @endsection
-
-@push('scripts')
-<script>
-    // Page-specific JavaScript
-</script>
-@endpush
