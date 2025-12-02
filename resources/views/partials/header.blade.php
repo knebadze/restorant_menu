@@ -12,7 +12,7 @@
                                 <a href="tel:{{ config('restaurant.phone') }}">
                                     <img src="{{ asset('images/icon-phone-accent.svg') }}" alt="">
                                     <span>{{ __('common.phone') }}:
-                                    </span>{{ config('restaurant.phone', '+(123) 465-789') }}
+                                    </span>{{ config('restaurant.phone', '+380 63 073 3434') }}
                                 </a>
                             </li>
                             <li>
@@ -58,7 +58,7 @@
             <div class="container">
                 <!-- Logo Start -->
                 <a class="navbar-brand" href="{{ route('welcome') }}">
-                    <img src="{{ asset('images/logo.svg') }}" alt="Logo">
+                    <img src="{{ asset('images/logo_site_w.png') }}" alt="Logo">
                 </a>
                 <!-- Logo End -->
 

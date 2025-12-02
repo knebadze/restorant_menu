@@ -9,9 +9,9 @@ return [
     // Contact Us Section
     'contact_section' => [
         'title' => 'Get in quick touch with us',
-        'description' => 'Have a question, feedback, or a special request? Reach out now — we\'re here to help you make your Seabud experience unforgettable.',
+        'description' => 'Have a question, feedback, or a special request? Reach out now — we\'re here to help you make your experience unforgettable.',
         'opening_hours_title' => 'Opening Hour:',
-        'opening_hours' => [
+       'opening_hours' => [
             'Mon - Fri : 09AM to 08PM',
             'Saturday : 11AM to 06PM',
             'Sunday : Closed',
@@ -32,17 +32,17 @@ return [
     'info' => [
         'contact_us' => [
             'title' => 'Contact us',
-            'phone1' => '(+02)-125-2556-347',
-            'phone2' => '(+02)-125-2556-347',
+            'phone1' => '+380 63 073 3434',
+            'phone2' => '+380 63 073 3434',
         ],
         'email_us' => [
             'title' => 'Email us',
-            'email1' => 'support@domainname.com',
-            'email2' => 'support@domainname.com',
+            'email1' => 'kapadokyarestoran2018@gmail.com',
+            'email2' => 'kapadokyarestoran2018@gmail.com',
         ],
         'address' => [
             'title' => 'Address',
-            'text' => '1987 Crescent Valley, Suite 402-B, Silverwood District, San Francisco',
+            'text' => '34 Lesi Ukrainky Boulevard, Kyiv, Ukraine',
         ],
     ],
 

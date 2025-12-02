@@ -32,17 +32,17 @@ return [
     'info' => [
         'contact_us' => [
             'title' => 'Зателефонуйте нам',
-            'phone1' => '(+02)-125-2556-347',
-            'phone2' => '(+02)-125-2556-347',
+            'phone1' => '+380 63 073 3434',
+            'phone2' => '+380 63 073 3434',
         ],
         'email_us' => [
             'title' => 'Напишіть нам',
-            'email1' => 'support@domainname.com',
-            'email2' => 'support@domainname.com',
+            'email1' => 'kapadokyarestoran2018@gmail.com',
+            'email2' => 'kapadokyarestoran2018@gmail.com',
         ],
         'address' => [
             'title' => 'Адреса',
-            'text' => '1987 Серпова долина, Офіс 402-B, Сільверівський район, Сан-Франциско',
+            'text' => 'Бульвар Лесі Українки, 34, Kyiv, Ukraine',
         ],
     ],
 
