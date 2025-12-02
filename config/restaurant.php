@@ -11,15 +11,15 @@ return [
     |
     */
 
-    'name' => env('RESTAURANT_NAME', 'Seabud Restaurant'),
+    'name' => env('RESTAURANT_NAME', 'Kapadokya.Com.Ua'),
 
-    'email' => env('RESTAURANT_EMAIL', 'info@domainname.com'),
+    'email' => env('RESTAURANT_EMAIL', 'kapadokyarestoran2018@gmail.com'),
 
-    'phone' => env('RESTAURANT_PHONE', '+(123) 465-789'),
+    'phone' => env('RESTAURANT_PHONE', '+380 63 073 3434'),
 
-    'address' => env('RESTAURANT_ADDRESS', '2972 Westheimer Rd. Santa Ana, Illinois 85486'),
+    'address' => env('RESTAURANT_ADDRESS', 'Бульвар Лесі Українки, 34, Kyiv, Ukraine'),
 
-    'footer_description' => "We're here to flip the script on traditional baking. Think bold flavor combos",
+    'footer_description' => "",
 
     /*
     |--------------------------------------------------------------------------
