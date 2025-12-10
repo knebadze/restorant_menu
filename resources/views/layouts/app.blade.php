@@ -23,7 +23,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Manrope:wght@200..800&display=swap"
         rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- Bootstrap Css -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
     <!-- SlickNav Css -->
@@ -31,7 +32,6 @@
     <!-- Swiper Css -->
     <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
     <!-- Font Awesome Icon Css-->
-    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" media="screen">
     <!-- Animated Css -->
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     <!-- Magnific Popup Core Css File -->

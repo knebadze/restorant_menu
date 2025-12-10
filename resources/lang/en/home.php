@@ -10,8 +10,8 @@ return [
     // About Section
     'about' => [
         'section_title' => 'about us',
-        'title' => 'Our story of freshness flavors and family tradition',
-        'description' => 'Ocean\'s Delight began as a small seaside eatery and has grown into a destination for seafood lovers near and far. What hasn\'t changed is our devotion to honest food.',
+        'title' => 'Our story of freshness, flavors, and country tradition',
+        'description' => 'Kapadokya began as a cozy corner restaurant and has grown into a beloved destination for food lovers from near and far. What has remained unchanged is our devotion to authentic flavors. Blending the rich traditions of Georgian and Turkish cuisine, Kapadokya celebrates the tastes, aromas, and warm hospitality of both countries in every dish we serve.',
         'features' => [
             'Freshly Baked with Care.',
             '100% Quality You Can Taste!',
