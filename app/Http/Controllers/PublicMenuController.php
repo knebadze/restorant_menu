@@ -20,8 +20,9 @@ class PublicMenuController extends Controller
                                   $query->active()->ordered();
                               }])
                               ->get();
+        $menuItems = Menu::active()->ordered()->get();
 
-        return view('menu', compact('categories'));
+        return view('menu', compact('categories', 'menuItems'));
     }
 
     /**
